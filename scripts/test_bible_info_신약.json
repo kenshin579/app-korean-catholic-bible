@@ -1,0 +1,153 @@
+{
+  "ListOfContents": [
+    "복음서",
+    "사도행전",
+    "서간",
+    "묵시록"
+  ],
+  "ListOfSubContents": {
+    "복음서": [
+      "마태",
+      "마르",
+      "루카",
+      "요한"
+    ],
+    "사도행전": [
+      "사도"
+    ],
+    "서간": [
+      "로마",
+      "1코린",
+      "2코린",
+      "갈라",
+      "에페",
+      "필리",
+      "콜로",
+      "1테살",
+      "2테살",
+      "1티모",
+      "2티모",
+      "티토",
+      "필레",
+      "히브",
+      "야고",
+      "1베드",
+      "2베드",
+      "1요한",
+      "2요한",
+      "3요한",
+      "유다"
+    ],
+    "묵시록": ["묵시"]
+  },
+  "BookInfo": {
+    "마태": {
+      "Url": "bible_read.asp?m=2&n=147&p=1",
+      "TotalNumOfChapters": "28"
+    },
+    "마르": {
+      "Url": "bible_read.asp?m=2&n=148&p=1",
+      "TotalNumOfChapters": "16"
+    },
+    "루카": {
+      "Url": "bible_read.asp?m=2&n=149&p=1",
+      "TotalNumOfChapters": "24"
+    },
+    "요한": {
+      "Url": "bible_read.asp?m=2&n=150&p=1",
+      "TotalNumOfChapters": "21"
+    },
+    "사도": {
+      "Url": "bible_read.asp?m=2&n=151&p=1",
+      "TotalNumOfChapters": "28"
+    },
+    "로마": {
+      "Url": "bible_read.asp?m=2&n=152&p=1",
+      "TotalNumOfChapters": "16"
+    },
+    "1코린": {
+      "Url": "bible_read.asp?m=2&n=153&p=1",
+      "TotalNumOfChapters": "16"
+    },
+    "2코린": {
+      "Url": "bible_read.asp?m=2&n=154&p=1",
+      "TotalNumOfChapters": "13"
+    },
+    "갈라": {
+      "Url": "bible_read.asp?m=2&n=155&p=1",
+      "TotalNumOfChapters": "6"
+    },
+    "에페": {
+      "Url": "bible_read.asp?m=2&n=156&p=1",
+      "TotalNumOfChapters": "6"
+    },
+    "필리": {
+      "Url": "bible_read.asp?m=2&n=157&p=1",
+      "TotalNumOfChapters": "4"
+    },
+    "콜로": {
+      "Url": "bible_read.asp?m=2&n=158&p=1",
+      "TotalNumOfChapters": "4"
+    },
+    "1테살": {
+      "Url": "bible_read.asp?m=2&n=159&p=1",
+      "TotalNumOfChapters": "5"
+    },
+    "2테살": {
+      "Url": "bible_read.asp?m=2&n=160&p=1",
+      "TotalNumOfChapters": "3"
+    },
+    "1티모": {
+      "Url": "bible_read.asp?m=2&n=161&p=1",
+      "TotalNumOfChapters": "6"
+    },
+    "2티모": {
+      "Url": "bible_read.asp?m=2&n=162&p=1",
+      "TotalNumOfChapters": "4"
+    },
+    "티토": {
+      "Url": "bible_read.asp?m=2&n=163&p=1",
+      "TotalNumOfChapters": "3"
+    },
+    "필레": {
+      "Url": "bible_read.asp?m=2&n=164&p=1",
+      "TotalNumOfChapters": "1"
+    },
+    "히브": {
+      "Url": "bible_read.asp?m=2&n=165&p=1",
+      "TotalNumOfChapters": "13"
+    },
+    "야고": {
+      "Url": "bible_read.asp?m=2&n=166&p=1",
+      "TotalNumOfChapters": "5"
+    },
+    "1베드": {
+      "Url": "bible_read.asp?m=2&n=167&p=1",
+      "TotalNumOfChapters": "5"
+    },
+    "2베드": {
+      "Url": "bible_read.asp?m=2&n=168&p=1",
+      "TotalNumOfChapters": "3"
+    },
+    "1요한": {
+      "Url": "bible_read.asp?m=2&n=169&p=1",
+      "TotalNumOfChapters": "5"
+    },
+    "2요한": {
+      "Url": "bible_read.asp?m=2&n=170&p=1",
+      "TotalNumOfChapters": "1"
+    },
+    "3요한": {
+      "Url": "bible_read.asp?m=2&n=171&p=1",
+      "TotalNumOfChapters": "1"
+    },
+    "유다": {
+      "Url": "bible_read.asp?m=2&n=172&p=1",
+      "TotalNumOfChapters": "1"
+    },
+    "묵시": {
+      "Url": "bible_read.asp?m=2&n=173&p=1",
+      "TotalNumOfChapters": "22"
+    }
+  }
+}

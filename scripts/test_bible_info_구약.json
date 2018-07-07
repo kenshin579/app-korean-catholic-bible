@@ -1,0 +1,250 @@
+{
+  "ListOfContents": [
+    "오경",
+    "역사서",
+    "시서와지혜서",
+    "예언서"
+  ],
+  "ListOfSubContents": {
+    "오경": [
+      "창세",
+      "탈출",
+      "레위",
+      "민수",
+      "신명"
+    ],
+    "역사서": [
+      "여호",
+      "판관",
+      "룻",
+      "1사무",
+      "2사무",
+      "1열왕",
+      "2열왕",
+      "1역대",
+      "2역대",
+      "에즈",
+      "느헤",
+      "토빗",
+      "유딧",
+      "에스",
+      "1마카",
+      "2마카"
+    ],
+    "시서와지혜서": [
+      "욥",
+      "시편",
+      "잠언",
+      "코헬",
+      "아가",
+      "지혜",
+      "집회"
+    ],
+    "예언서": [
+      "이사",
+      "예레",
+      "애가",
+      "바룩",
+      "에제",
+      "다니",
+      "호세",
+      "요엘",
+      "아모",
+      "오바",
+      "요나",
+      "미카",
+      "나훔",
+      "하바",
+      "스바",
+      "하까",
+      "즈카",
+      "말라"
+    ]
+  },
+  "BookInfo": {
+    "창세": {
+      "Url": "bible_read.asp?m=1&n=101&p=1",
+      "TotalNumOfChapters": "50"
+    },
+    "탈출": {
+      "Url": "bible_read.asp?m=1&n=102&p=1",
+      "TotalNumOfChapters": "40"
+    },
+    "레위": {
+      "Url": "bible_read.asp?m=1&n=103&p=1",
+      "TotalNumOfChapters": "27"
+    },
+    "민수": {
+      "Url": "bible_read.asp?m=1&n=104&p=1",
+      "TotalNumOfChapters": "36"
+    },
+    "신명": {
+      "Url": "bible_read.asp?m=1&n=105&p=1",
+      "TotalNumOfChapters": "34"
+    },
+    "여호": {
+      "Url": "bible_read.asp?m=1&n=106&p=1",
+      "TotalNumOfChapters": "24"
+    },
+    "판관": {
+      "Url": "bible_read.asp?m=1&n=107&p=1",
+      "TotalNumOfChapters": "21"
+    },
+    "룻": {
+      "Url": "bible_read.asp?m=1&n=108&p=1",
+      "TotalNumOfChapters": "4"
+    },
+    "1사무": {
+      "Url": "bible_read.asp?m=1&n=109&p=1",
+      "TotalNumOfChapters": "31"
+    },
+    "2사무": {
+      "Url": "bible_read.asp?m=1&n=110&p=1",
+      "TotalNumOfChapters": "24"
+    },
+    "1열왕": {
+      "Url": "bible_read.asp?m=1&n=111&p=1",
+      "TotalNumOfChapters": "22"
+    },
+    "2열왕": {
+      "Url": "bible_read.asp?m=1&n=112&p=1",
+      "TotalNumOfChapters": "25"
+    },
+    "1역대": {
+      "Url": "bible_read.asp?m=1&n=113&p=1",
+      "TotalNumOfChapters": "29"
+    },
+    "2역대": {
+      "Url": "bible_read.asp?m=1&n=114&p=1",
+      "TotalNumOfChapters": "36"
+    },
+    "에즈": {
+      "Url": "bible_read.asp?m=1&n=115&p=1",
+      "TotalNumOfChapters": "10"
+    },
+    "느헤": {
+      "Url": "bible_read.asp?m=1&n=116&p=1",
+      "TotalNumOfChapters": "13"
+    },
+    "토빗": {
+      "Url": "bible_read.asp?m=1&n=117&p=1",
+      "TotalNumOfChapters": "14"
+    },
+    "유딧": {
+      "Url": "bible_read.asp?m=1&n=118&p=1",
+      "TotalNumOfChapters": "16"
+    },
+    "에스": {
+      "Url": "bible_read.asp?m=1&n=119&p=1",
+      "TotalNumOfChapters": "10"
+    },
+    "1마카": {
+      "Url": "bible_read.asp?m=1&n=120&p=1",
+      "TotalNumOfChapters": "16"
+    },
+    "2마카": {
+      "Url": "bible_read.asp?m=1&n=121&p=1",
+      "TotalNumOfChapters": "15"
+    },
+    "욥": {
+      "Url": "bible_read.asp?m=1&n=122&p=1",
+      "TotalNumOfChapters": "42"
+    },
+    "시편": {
+      "Url": "bible_read.asp?m=1&n=123&p=1",
+      "TotalNumOfChapters": "150"
+    },
+    "잠언": {
+      "Url": "bible_read.asp?m=1&n=124&p=1",
+      "TotalNumOfChapters": "31"
+    },
+    "코헬": {
+      "Url": "bible_read.asp?m=1&n=125&p=1",
+      "TotalNumOfChapters": "12"
+    },
+    "아가": {
+      "Url": "bible_read.asp?m=1&n=126&p=1",
+      "TotalNumOfChapters": "8"
+    },
+    "지혜": {
+      "Url": "bible_read.asp?m=1&n=127&p=1",
+      "TotalNumOfChapters": "19"
+    },
+    "집회": {
+      "Url": "bible_read.asp?m=1&n=128&p=1",
+      "TotalNumOfChapters": "51"
+    },
+    "이사": {
+      "Url": "bible_read.asp?m=1&n=129&p=1",
+      "TotalNumOfChapters": "66"
+    },
+    "예레": {
+      "Url": "bible_read.asp?m=1&n=130&p=1",
+      "TotalNumOfChapters": "52"
+    },
+    "애가": {
+      "Url": "bible_read.asp?m=1&n=131&p=1",
+      "TotalNumOfChapters": "5"
+    },
+    "바룩": {
+      "Url": "bible_read.asp?m=1&n=132&p=1",
+      "TotalNumOfChapters": "6"
+    },
+    "에제": {
+      "Url": "bible_read.asp?m=1&n=133&p=1",
+      "TotalNumOfChapters": "48"
+    },
+    "다니": {
+      "Url": "bible_read.asp?m=1&n=134&p=1",
+      "TotalNumOfChapters": "14"
+    },
+    "호세": {
+      "Url": "bible_read.asp?m=1&n=135&p=1",
+      "TotalNumOfChapters": "14"
+    },
+    "요엘": {
+      "Url": "bible_read.asp?m=1&n=136&p=1",
+      "TotalNumOfChapters": "4"
+    },
+    "아모": {
+      "Url": "bible_read.asp?m=1&n=137&p=1",
+      "TotalNumOfChapters": "9"
+    },
+    "오바": {
+      "Url": "bible_read.asp?m=1&n=138&p=1",
+      "TotalNumOfChapters": "1"
+    },
+    "요나": {
+      "Url": "bible_read.asp?m=1&n=139&p=1",
+      "TotalNumOfChapters": "4"
+    },
+    "미카": {
+      "Url": "bible_read.asp?m=1&n=140&p=1",
+      "TotalNumOfChapters": "7"
+    },
+    "나훔": {
+      "Url": "bible_read.asp?m=1&n=141&p=1",
+      "TotalNumOfChapters": "3"
+    },
+    "하바": {
+      "Url": "bible_read.asp?m=1&n=142&p=1",
+      "TotalNumOfChapters": "3"
+    },
+    "스바": {
+      "Url": "bible_read.asp?m=1&n=143&p=1",
+      "TotalNumOfChapters": "3"
+    },
+    "하까": {
+      "Url": "bible_read.asp?m=1&n=144&p=1",
+      "TotalNumOfChapters": "2"
+    },
+    "즈카": {
+      "Url": "bible_read.asp?m=1&n=145&p=1",
+      "TotalNumOfChapters": "14"
+    },
+    "말라": {
+      "Url": "bible_read.asp?m=1&n=146&p=1",
+      "TotalNumOfChapters": "3"
+    }
+  }
+}
