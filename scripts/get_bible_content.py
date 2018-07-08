@@ -134,7 +134,7 @@ def create_dir(name_dir):
         os.makedirs(name_dir)
 
 
-def create_directory_based_on_info(parent_dir_name, bible_info):
+def create_directory_based_on_info(parent_dir_name, bible_info, dest_dir):
     """
     bible_info 정보기반으로 폴더를 생성함
 
@@ -142,17 +142,19 @@ def create_directory_based_on_info(parent_dir_name, bible_info):
     :param bible_info:
     :return:
     """
-    create_dir(parent_dir_name)
+    create_dir(os.path.join(dest_dir, parent_dir_name))
 
     content_count = 1
     for content_dir_name in bible_info["ListOfContents"]:
-        content_path = os.path.join(parent_dir_name, str(content_count) + "_" + content_dir_name)
+        content_path = os.path.join(dest_dir, os.path.join(parent_dir_name, str(content_count) + "_" + content_dir_name))
+        print("content_path", content_path)
         create_dir(content_path)
         content_count = content_count + 1
 
         subcontent_count = 1
         for subcontent_dir_name in bible_info["ListOfSubContents"][content_dir_name]:
             subcontent_path = os.path.join(content_path, str(subcontent_count) + "_" + subcontent_dir_name)
+            print("subcontent_path", subcontent_path)
             create_dir(subcontent_path)
             subcontent_count = subcontent_count + 1
 
@@ -271,9 +273,10 @@ def create_readme_file_for_gitbook():
     pass
 
 
-def create_summary_file_for_gitbook(bible_info):
+def create_summary_file_for_gitbook(bible_info, dest_dir):
     print("bible_info", bible_info)
-    with open("SUMMARY.MD", "w") as f:
+    create_dir(dest_dir)
+    with open(os.path.join(dest_dir, "SUMMARY.MD"), "w") as f:
         f.write("# Summary\n")
         testament_name = get_testament_name(bible_info)
         print("testament_name", testament_name)
@@ -333,8 +336,6 @@ def is_old_testment(bible_info):
 
 
 def get_full_path_based_on_subcontent_name(bible_info, subcontent_name):
-    # return get_testament_name(bible_info) + "/" + \
-    #        get_content_name_for_subcontent_name(bible_info, subcontent_name) + "/" + subcontent_name
     path_list = []
     path_list.append(get_testament_name(bible_info))
 
@@ -357,12 +358,13 @@ def get_testament_name(bible_info):
     return "구약" if is_old_testment(bible_info) else "신약"
 
 
-def create_makeup_based_on_subcontent_info(bible_info, subcontent_info):
+def create_makeup_based_on_subcontent_info(bible_info, subcontent_info, dest_dir):
     """
     creating makeup 파일
         1_복음서/1_마태/chap#.md
         1_복음서/1_마태/REAMDME.md
 
+    :param dest_dir:
     :param subcontent_info:
     :return:
     """
@@ -371,7 +373,7 @@ def create_makeup_based_on_subcontent_info(bible_info, subcontent_info):
 
     for subcontent_name in subcontent_info:
         print("subcontent_name", subcontent_name)
-        file_path = get_full_path_based_on_subcontent_name(bible_info, subcontent_name)
+        file_path = os.path.join(dest_dir, get_full_path_based_on_subcontent_name(bible_info, subcontent_name))
         print("file_path", file_path)
 
         create_dir(file_path)
@@ -392,12 +394,19 @@ def create_makeup_based_on_subcontent_info(bible_info, subcontent_info):
                         f.write(line + "\n")
 
 
-def create_readme_file_for_testment(bible_info):
+def create_readme_file_for_testment(bible_info, dest_dir):
+    """
+    신약, 구약에 대한 readme 파일을 생성함
+
+    :param dest_dir:
+    :param bible_info:
+    :return:
+    """
     # print("bible_info", bible_info)
     testament_name = get_testament_name(bible_info)
     print("testament_name", testament_name)
 
-    with open(testament_name + "/README.md", "w") as f:
+    with open(os.path.join(dest_dir, testament_name + "/README.md"), "w") as f:
         f.write("# " + testament_name + " 성경\n")
         for content_name in bible_info["ListOfContents"]:
             f.write("## " + content_name + "\n")
@@ -407,32 +416,42 @@ def create_readme_file_for_testment(bible_info):
                 f.write("* [" + chapter + "](" + full_path + "/README.md)\n")
 
 
-def create_makeup_files(bible_info, subcontent_info):
+def create_makeup_files(bible_info, subcontent_info, dest_dir):
+    """
+    전체 markup 파일을 생성함
+
+    :param dest_dir:
+    :param bible_info:
+    :param subcontent_info:
+    :return:
+    """
     # readme for root
-    create_summary_file_for_gitbook(bible_info)
+    create_summary_file_for_gitbook(bible_info, dest_dir)
 
     # readme for testment
-    create_readme_file_for_testment(bible_info)
+    create_readme_file_for_testment(bible_info, dest_dir)
 
     # subcontent
-    create_makeup_based_on_subcontent_info(bible_info, subcontent_info)
+    create_makeup_based_on_subcontent_info(bible_info, subcontent_info, dest_dir)
 
 
-def create_gitbook(testament_name):
+def create_gitbook(testament_name, dest_dir):
     """
     웹사이트에 접속해서 전체 성경을 scrape해서 gitbook으로 만듬
 
+    :param dest_dir:
     :param testament_name:
     :return:
     """
     print("testament_name", testament_name)
     bible_info = create_bible_info(testament_name)
-    create_directory_based_on_info(testament_name, bible_info)
     subcontent_info = create_subcontents(bible_info)
-    create_makeup_files(bible_info, subcontent_info)
+
+    create_directory_based_on_info(testament_name, bible_info, dest_dir)
+    create_makeup_files(bible_info, subcontent_info, dest_dir)
 
 
-def scrape_bible(format_type):
+def scrape_bible(format_type, dest_dir):
     print("format_type", format_type)
 
     if format_type == "epub":
@@ -441,14 +460,14 @@ def scrape_bible(format_type):
 
     if format_type == "gitbook":
         print("gitbook")
-        create_gitbook("구약")
-        create_gitbook("신약")
+        create_gitbook("구약", dest_dir)
+        create_gitbook("신약", dest_dir)
 
 
 def usage():
     print("한글 성경 EPUB 파일로 만들기")
     print("Usage: ", os.path.basename(sys.argv[0]),
-          "[-h|--help] [-f|--format]")
+          "[-h|--help] [-f|--format] destination folder")
     print("   format : [epub, gitbook]")
     print()
     print("   -h,--help                 : help 메뉴")
@@ -456,7 +475,7 @@ def usage():
     print("   * 참조: gitbook : scrape해서 markup으로 저장함 (1회성)")
     print()
     print("Examples: ")
-    print("python3 ", os.path.basename(sys.argv[0]), "-f epub")
+    print("python3 ", os.path.basename(sys.argv[0]), "-f epub ../")
 
 
 ################################################
@@ -466,7 +485,7 @@ def usage():
 
 def main():
     print("sys.argv", sys.argv)
-    if len(sys.argv) <= 2:
+    if len(sys.argv) <= 3:
         usage()
         sys.exit(0)
 
@@ -489,7 +508,9 @@ def main():
         else:
             assert False, "unhandled option"
 
-    scrape_bible(format_type)
+    destination_dir = sys.argv[-1]
+
+    scrape_bible(format_type, destination_dir)
 
 
 if __name__ == "__main__":
