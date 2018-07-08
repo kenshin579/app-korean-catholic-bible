@@ -9,27 +9,27 @@ import scripts.get_bible_content as bible
 
 
 class BibleTest(unittest.TestCase):
-    BIBLE_NAME_USED_FOR_CREATING_DIR = "테스트신약"
+    TESTAMENT_NAME_USED_FOR_CREATING_DIR = "테스트신약"
 
     def setUp(self):
         pass
 
     def tearDown(self):
-        if os.path.isdir(self.BIBLE_NAME_USED_FOR_CREATING_DIR):
-            shutil.rmtree(self.BIBLE_NAME_USED_FOR_CREATING_DIR)
+        if os.path.isdir(self.TESTAMENT_NAME_USED_FOR_CREATING_DIR):
+            shutil.rmtree(self.TESTAMENT_NAME_USED_FOR_CREATING_DIR)
 
     def print_dir(self):
-        for root, dirs, files in os.walk(self.BIBLE_NAME_USED_FOR_CREATING_DIR):
+        for root, dirs, files in os.walk(self.TESTAMENT_NAME_USED_FOR_CREATING_DIR):
             print("root", root, "dirs", dirs, "files", files)
 
     def test_create_directory(self):
         with open("./test_bible_info_구약.json") as f:
             new_testment_json = json.loads(f.read())
 
-            bible.create_directory_based_on_info(self.BIBLE_NAME_USED_FOR_CREATING_DIR, new_testment_json)
+            bible.create_directory_based_on_info(self.TESTAMENT_NAME_USED_FOR_CREATING_DIR, new_testment_json)
             self.print_dir()
 
-            self.assertTrue(os.path.isdir(self.BIBLE_NAME_USED_FOR_CREATING_DIR))
+            self.assertTrue(os.path.isdir(self.TESTAMENT_NAME_USED_FOR_CREATING_DIR))
 
     def test_create_bible_info(self):
         expected_total = 73
@@ -48,9 +48,21 @@ class BibleTest(unittest.TestCase):
             self.assertTrue(True)
 
     def test_create_makeup_based_on_subcontent_info(self):
-        with open("./test_마태.json") as f:
-            contents = json.loads(f.read())
-            print(contents)
+        with open("./test_subcontent_구약.json") as s, open("./test_bible_info_구약.json") as b:
+            bible_info = json.loads(b.read())
+            subcontent_info = json.loads(s.read())
+            bible.create_makeup_based_on_subcontent_info(bible_info, subcontent_info)
+
+    def test_create_readme_file_for_testment(self):
+        with open("./test_bible_info_구약.json") as b:
+            bible_info = json.loads(b.read())
+            bible.create_readme_file_for_testment(bible_info)
+
+    def test_create_summary_file_for_gitbook(self):
+        with open("./test_bible_info_구약.json") as b:
+            bible_info = json.loads(b.read())
+            bible.create_summary_file_for_gitbook(bible_info)
+        pass
 
     def test_print_progress_bar(self):
         # bible.print_progress_bar()
