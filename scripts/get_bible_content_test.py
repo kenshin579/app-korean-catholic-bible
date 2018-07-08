@@ -17,6 +17,7 @@ class BibleTest(unittest.TestCase):
     def tearDown(self):
         if os.path.isdir(self.TESTAMENT_NAME_USED_FOR_CREATING_DIR):
             shutil.rmtree(self.TESTAMENT_NAME_USED_FOR_CREATING_DIR)
+        pass
 
     def print_dir(self):
         for root, dirs, files in os.walk(self.TESTAMENT_NAME_USED_FOR_CREATING_DIR):
@@ -44,8 +45,8 @@ class BibleTest(unittest.TestCase):
     def test_create_subcontents(self):
         with open("./test_bible_info_구약.json") as f:
             new_testment_json = json.loads(f.read())
-            bible.create_subcontents(new_testment_json)
-            self.assertTrue(True)
+            content_info = bible.create_subcontents(new_testment_json)
+            print("content_info", content_info)
 
     def test_create_makeup_based_on_subcontent_info(self):
         with open("./test_subcontent_구약.json") as s, open("./test_bible_info_구약.json") as b:
@@ -56,13 +57,13 @@ class BibleTest(unittest.TestCase):
     def test_create_readme_file_for_testment(self):
         with open("./test_bible_info_구약.json") as b:
             bible_info = json.loads(b.read())
+            bible.create_dir("구약")
             bible.create_readme_file_for_testment(bible_info)
 
     def test_create_summary_file_for_gitbook(self):
         with open("./test_bible_info_구약.json") as b:
             bible_info = json.loads(b.read())
             bible.create_summary_file_for_gitbook(bible_info)
-        pass
 
     def test_print_progress_bar(self):
         # bible.print_progress_bar()
