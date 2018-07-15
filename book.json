@@ -1,9 +1,15 @@
 {
+  "title": "가톨릭 성경",
+  "author": "하느님",
   "styles": {
     "website": "styles/website.css",
     "ebook": "styles/ebook.css",
     "pdf": "styles/pdf.css",
     "mobi": "styles/mobi.css",
     "epub": "styles/epub.css"
-  }
+  },
+  "structure": {
+    "readme": "INTRO.md"
+  },
+  "language": "ko"
 }

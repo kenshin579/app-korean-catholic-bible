@@ -5,7 +5,6 @@ import re
 import sys
 from random import randint
 from time import sleep
-from urllib.request import urlopen
 
 import requests
 from bs4 import BeautifulSoup
@@ -27,24 +26,6 @@ git_book_url = "https://openair.gitbook.io/korean-catholic-bible"
 MAX_SLEEP_TIME = 15
 
 
-def create_epub(testament_name):
-    """
-    gitbook 명령어로 epub 만듬
-
-    :param testament_name:
-    :return:
-    """
-    print("created epub file : " + testament_name + ".epub")
-
-    if testament_name == "신약":
-        html = urlopen(new_testment_url)
-        bsObj = BeautifulSoup(html, "html.parser")
-    if testament_name == "구약":
-        pass
-    if testament_name == "성경":
-        pass
-
-
 def request(url):
     session = requests.Session()
     headers = {
@@ -56,7 +37,7 @@ def request(url):
     return session.get(url, headers=headers)
 
 
-def create_bible_info(testament_name):
+def create_testament_info(testament_name):
     """
     url에 접속해서 bibleInfo를 생성함. 한번만 실행하면 그이후에는 따로 할필요는 없음.
 
@@ -134,34 +115,32 @@ def create_dir(name_dir):
         os.makedirs(name_dir)
 
 
-def create_directory_based_on_info(parent_dir_name, bible_info, dest_dir):
+def create_directory_based_on_info(parent_dir_name, testament_info, dest_dir):
     """
-    bible_info 정보기반으로 폴더를 생성함
+    testament_info 정보기반으로 폴더를 생성함
 
     :param parent_dir_name:
-    :param bible_info:
+    :param testament_info:
     :return:
     """
     create_dir(os.path.join(dest_dir, parent_dir_name))
 
     content_count = 1
-    for content_dir_name in bible_info["ListOfContents"]:
-        content_path = os.path.join(dest_dir, os.path.join(parent_dir_name, str(content_count) + "_" + content_dir_name))
-        print("content_path", content_path)
+    for content_dir_name in testament_info["ListOfContents"]:
+        content_path = os.path.join(dest_dir,
+                                    os.path.join(parent_dir_name, str(content_count) + "_" + content_dir_name))
         create_dir(content_path)
         content_count = content_count + 1
 
         subcontent_count = 1
-        for subcontent_dir_name in bible_info["ListOfSubContents"][content_dir_name]:
+        for subcontent_dir_name in testament_info["ListOfSubContents"][content_dir_name]:
             subcontent_path = os.path.join(content_path, str(subcontent_count) + "_" + subcontent_dir_name)
-            print("subcontent_path", subcontent_path)
             create_dir(subcontent_path)
             subcontent_count = subcontent_count + 1
 
 
 def sleep_randomly():
     rand_value = randint(1, MAX_SLEEP_TIME)
-    # print("sleeping for", rand_value, "secs.")
     sleep(rand_value)
 
 
@@ -188,8 +167,9 @@ def print_progress_bar(iteration, total, prefix='', suffix='', decimals=1, lengt
         print()
 
 
-def create_subcontents(bible_info):
+def create_subcontents(testament_info):
     """
+    성경 책 내용을 채움
 
     contents_info = {
         "창세": [
@@ -206,7 +186,7 @@ def create_subcontents(bible_info):
         ]
     }
 
-    :param bible_info:
+    :param testament_info:
     :return:
     """
 
@@ -214,29 +194,28 @@ def create_subcontents(bible_info):
 
     # 오경, 역사서 ...
     content_count = 1
-    for content in bible_info["ListOfSubContents"]:
+    for content in testament_info["ListOfSubContents"]:
         print("===", content, "===")
 
-        if content_count == 2:
-            print("breaking content_count ... ")
-            break
+        # if content_count == 2:
+        #     print("breaking content_count ... ")
+        #     break
         # 창세, 탈출 ...
         subcontent_count = 1
-        for subcontent in bible_info["ListOfSubContents"][content]:
+        for subcontent in testament_info["ListOfSubContents"][content]:
             print("-", subcontent, "-")
 
-            total_chapters = int(bible_info["BookInfo"][subcontent]["TotalNumOfChapters"])
+            total_chapters = int(testament_info["BookInfo"][subcontent]["TotalNumOfChapters"])
             print("total_chapters", total_chapters)
             print_progress_bar(0, total_chapters, prefix='Progress:', suffix='Complete', length=50)
-            # for chapter_index in range(1, total_chapters + 1):
-            if subcontent_count == 3:
-                print("breaking....")
-                break
-            all_chapters_list = []
-            for chapter_index in range(1, randint(2, 4)):
-                url = re.sub(r"p=1", "p=" + str(chapter_index), bible_info["BookInfo"][subcontent]["Url"])
-                # print("url", url)
 
+            # if subcontent_count == 3:
+            #     print("breaking....")
+            #     break
+            all_chapters_list = []
+            # for chapter_index in range(1, randint(2, 5)):
+            for chapter_index in range(1, total_chapters + 1):
+                url = re.sub(r"p=1", "p=" + str(chapter_index), testament_info["BookInfo"][subcontent]["Url"])
                 sleep_randomly()
 
                 bsObj = BeautifulSoup(request(base_url + "/" + url).content, "html.parser")
@@ -245,52 +224,36 @@ def create_subcontents(bible_info):
                 contents_list = []
 
                 for row in rows:
-                    # print("row", row)
                     texts = row.find_all("td", class_="al tt")
                     for text in texts:
-                        # print("text", text.get_text())
                         if text.get("id") == "j":
                             contents_list.append("t:" + text.get_text().strip().replace(u'\xa0', u' '))
                         else:
                             contents_list.append(text.get("id")[1:] + " " + text.get_text().strip())
 
-                # print("contents_list", contents_list)
                 print_progress_bar(chapter_index + 1, total_chapters, prefix='Progress:', suffix='Complete', length=50)
-            all_chapters_list.append(contents_list)
+                all_chapters_list.append(contents_list)
 
             contents_info[subcontent] = all_chapters_list
-            print("contents_info1", contents_info)
+            # subcontent_count = subcontent_count + 1
 
-            subcontent_count = subcontent_count + 1
+        # content_count = content_count + 1
 
-        content_count = content_count + 1
-
-    print("contents_info2", contents_info)
+    # print("contents_info2", contents_info)
     return contents_info
 
 
-def create_readme_file_for_gitbook():
-    pass
-
-
-def create_summary_file_for_gitbook(bible_info, dest_dir):
-    print("bible_info", bible_info)
+def create_summary_file_for_gitbook(testament_info, dest_dir):
     create_dir(dest_dir)
-    with open(os.path.join(dest_dir, "SUMMARY.MD"), "w") as f:
-        f.write("# Summary\n")
-        testament_name = get_testament_name(bible_info)
-        print("testament_name", testament_name)
-        f.write("* [" + testament_name + "성경](" + testament_name + "/README.md)\n")
-        for each_subcontent in bible_info["BookInfo"]:
+    with open(os.path.join(dest_dir, "SUMMARY.MD"), "a") as f:
+        testament_name = get_testament_name(testament_info)
+        f.write("* [" + testament_name + " 성경](" + testament_name + "/README.md)\n")
+        for each_subcontent in testament_info["BookInfo"]:
             print("each_subcontent", each_subcontent)
-            path = get_full_path_based_on_subcontent_name(bible_info, each_subcontent)
+            path = get_testament_name(testament_info) + "/" + \
+                   get_full_path_based_on_subcontent_name(testament_info, each_subcontent)
             print("path", path)
-            f.write("\t * [" + each_subcontent + "](" + path + ")\n")
-            total_count = get_total_chapter(bible_info, each_subcontent)
-            print("total_count", total_count)
-            for index in range(1, total_count + 1):
-                f.write("\t\t ** [Chapter" + str(index) + "](" + path + "/chap" + str(index) + ".md)\n")
-        pass
+            f.write("\t * [" + each_subcontent + "](" + path + "/README.md)\n")
 
 
 def write_makeup(title, content):
@@ -300,47 +263,42 @@ def write_makeup(title, content):
         print("content", content)
 
 
-def get_content_name_for_subcontent_name(bible_info, subcontent_name):
-    for index_content, content_name in enumerate(bible_info["ListOfSubContents"]):
-        for index_subcontent, each_subcontent in enumerate(bible_info["ListOfSubContents"][content_name]):
+def get_content_name_for_subcontent_name(testament_info, subcontent_name):
+    for index_content, content_name in enumerate(testament_info["ListOfSubContents"]):
+        for index_subcontent, each_subcontent in enumerate(testament_info["ListOfSubContents"][content_name]):
             if each_subcontent == subcontent_name:
                 return content_name
 
 
-def write_readme_for_each_chapter(bible_info, subcontent_name, total_chapter, file_path):
+def write_readme_for_each_subcontent(testament_info, subcontent_name, total_chapter, file_name):
+    print("write_readme_for_each_subcontent")
     """
     # 마태
     {% include "./chap1.md" %}
     {% include "./chap2.md" %}
     ...
 
-    :param bible_info:
+    :param testament_info:
     :param subcontent_name:
     :param total_chapter:
-    :param file_path:
+    :param file_name:
     :return:
     """
-    content_name = get_content_name_for_subcontent_name(bible_info, subcontent_name)
+    content_name = get_content_name_for_subcontent_name(testament_info, subcontent_name)
     print("content_name", content_name)
-    with open(file_path, "w") as f:
+    print("file_name", file_name)
+    with open(file_name, "w") as f:
         f.write("# " + subcontent_name + "\n")
+        print("# " + subcontent_name)
         for index in range(1, int(total_chapter) + 1):
-            f.write("{% include ./chap" + str(index) + ".md %}\n")
+            f.write("{% include \"./chap" + str(index) + ".md\" %}\n")
 
 
-def is_old_testment(bible_info):
-    if "창세" in bible_info["BookInfo"]:
-        return True
-    else:
-        return False
-
-
-def get_full_path_based_on_subcontent_name(bible_info, subcontent_name):
+def get_full_path_based_on_subcontent_name(testament_info, subcontent_name):
     path_list = []
-    path_list.append(get_testament_name(bible_info))
 
-    for index_content, content_name in enumerate(bible_info["ListOfSubContents"]):
-        for index_subcontent, each_subcontent in enumerate(bible_info["ListOfSubContents"][content_name]):
+    for index_content, content_name in enumerate(testament_info["ListOfSubContents"]):
+        for index_subcontent, each_subcontent in enumerate(testament_info["ListOfSubContents"][content_name]):
             if each_subcontent == subcontent_name:
                 path_list.append(str(index_content + 1) + "_" + content_name)
                 path_list.append(str(index_subcontent + 1) + "_" + subcontent_name)
@@ -348,45 +306,53 @@ def get_full_path_based_on_subcontent_name(bible_info, subcontent_name):
     return "/".join(path_list)
 
 
-def get_total_chapter(bible_info, subcontent_name):
-    print("bible_info", bible_info)
+def get_total_chapter(testament_info, subcontent_name):
+    print("testament_info", testament_info)
     print("subcontent_name", subcontent_name)
-    return int(bible_info["BookInfo"][subcontent_name]["TotalNumOfChapters"])
+    return int(testament_info["BookInfo"][subcontent_name]["TotalNumOfChapters"])
 
 
-def get_testament_name(bible_info):
-    return "구약" if is_old_testment(bible_info) else "신약"
+def is_old_testment(testament_info):
+    return True if "창세" in testament_info["BookInfo"] else False
+
+def get_testament_name(testament_info):
+    return "구약" if is_old_testment(testament_info) else "신약"
 
 
-def create_makeup_based_on_subcontent_info(bible_info, subcontent_info, dest_dir):
+def create_markup_based_on_subcontent_info(testament_info, subcontent_info, dest_dir):
+    print("create_markup_based_on_subcontent_info")
     """
     creating makeup 파일
         1_복음서/1_마태/chap#.md
         1_복음서/1_마태/REAMDME.md
 
+    :param testament_info:
     :param dest_dir:
     :param subcontent_info:
     :return:
     """
     print("subcontent_info", subcontent_info)
-    # print("bible_info", bible_info)
+    # print("testament_info", testament_info)
 
     for subcontent_name in subcontent_info:
         print("subcontent_name", subcontent_name)
-        file_path = os.path.join(dest_dir, get_full_path_based_on_subcontent_name(bible_info, subcontent_name))
+        file_path = os.path.join(os.path.join(dest_dir, get_testament_name(testament_info)),
+                                 get_full_path_based_on_subcontent_name(testament_info, subcontent_name))
         print("file_path", file_path)
 
         create_dir(file_path)
 
-        total_chapter = get_total_chapter(bible_info, subcontent_name)
+        total_chapter = get_total_chapter(testament_info, subcontent_name)
         print("total_chapter", total_chapter)
 
-        write_readme_for_each_chapter(bible_info, subcontent_name, total_chapter,
-                                      file_path + "/README.md")
+        write_readme_for_each_subcontent(testament_info, subcontent_name, total_chapter, file_path + "/README.md")
 
         for index, chapter in enumerate(subcontent_info[subcontent_name]):
             print((index + 1), "chapter", chapter)
-            with open(file_path + "/chap" + str(index + 1) + ".md", "w") as f:
+            file_name = file_path + "/chap" + str(index + 1) + ".md"
+
+            with open(file_name, "w") as f:
+                f.write("## " + str((index + 1)) + "장\n")
                 for line in chapter:
                     if re.search("t:", line):
                         f.write("### " + line.split(":")[1].lstrip() + "\n")
@@ -394,48 +360,51 @@ def create_makeup_based_on_subcontent_info(bible_info, subcontent_info, dest_dir
                         f.write(line + "\n")
 
 
-def create_readme_file_for_testment(bible_info, dest_dir):
+def create_readme_file_for_testment(testament_info, dest_dir):
+    print("create_readme_file_for_testment")
     """
     신약, 구약에 대한 readme 파일을 생성함
 
     :param dest_dir:
-    :param bible_info:
+    :param testament_info:
     :return:
     """
-    # print("bible_info", bible_info)
-    testament_name = get_testament_name(bible_info)
+    print("testament_info", testament_info)
+    testament_name = get_testament_name(testament_info)
     print("testament_name", testament_name)
 
     with open(os.path.join(dest_dir, testament_name + "/README.md"), "w") as f:
         f.write("# " + testament_name + " 성경\n")
-        for content_name in bible_info["ListOfContents"]:
+        for content_name in testament_info["ListOfContents"]:
             f.write("## " + content_name + "\n")
-            for chapter in bible_info["ListOfSubContents"][content_name]:
+            for chapter in testament_info["ListOfSubContents"][content_name]:
                 print("chapter", chapter)
-                full_path = get_full_path_based_on_subcontent_name(bible_info, chapter)
+                full_path = get_full_path_based_on_subcontent_name(testament_info, chapter)
+                print("full_path", full_path)
                 f.write("* [" + chapter + "](" + full_path + "/README.md)\n")
 
 
-def create_makeup_files(bible_info, subcontent_info, dest_dir):
+def create_markup_files(testament_info, subcontent_info, dest_dir):
+    print("create_markup_files", testament_info)
     """
     전체 markup 파일을 생성함
 
     :param dest_dir:
-    :param bible_info:
+    :param testament_info:
     :param subcontent_info:
     :return:
     """
     # readme for root
-    create_summary_file_for_gitbook(bible_info, dest_dir)
+    create_summary_file_for_gitbook(testament_info, dest_dir)
 
     # readme for testment
-    create_readme_file_for_testment(bible_info, dest_dir)
+    create_readme_file_for_testment(testament_info, dest_dir)
 
     # subcontent
-    create_makeup_based_on_subcontent_info(bible_info, subcontent_info, dest_dir)
+    create_markup_based_on_subcontent_info(testament_info, subcontent_info, dest_dir)
 
 
-def create_gitbook(testament_name, dest_dir):
+def create_gitbook(dest_dir):
     """
     웹사이트에 접속해서 전체 성경을 scrape해서 gitbook으로 만듬
 
@@ -443,25 +412,41 @@ def create_gitbook(testament_name, dest_dir):
     :param testament_name:
     :return:
     """
-    print("testament_name", testament_name)
-    bible_info = create_bible_info(testament_name)
-    subcontent_info = create_subcontents(bible_info)
+    testament_list = ["구약", "신약"]
+    filename = os.path.join(dest_dir, "SUMMARY.MD")
+    if os.path.exists(filename):
+        os.remove(filename)
 
-    create_directory_based_on_info(testament_name, bible_info, dest_dir)
-    create_makeup_files(bible_info, subcontent_info, dest_dir)
+    with open(filename, "a") as f:
+        f.write("# Summary\n")
+
+    for testament_name in testament_list:
+        print("testament_name", testament_name)
+        testament_info = create_testament_info(testament_name)
+        subcontent_info = create_subcontents(testament_info)
+
+        create_directory_based_on_info(testament_name, testament_info, dest_dir)
+        create_markup_files(testament_info, subcontent_info, dest_dir)
+
+
+def create_other_format(format_type):
+    """
+    gitbook 명령어로 다양한 format type으로 생성함
+
+    :param format_type:
+    :return:
+    """
+
+    full_cmd = "gitbook " + format_type + " ../ ../_build/bible." + format_type
+    print(full_cmd)
+    os.system(full_cmd)
 
 
 def scrape_bible(format_type, dest_dir):
-    print("format_type", format_type)
-
-    if format_type == "epub":
-        print("epub")
-        # create_epub(testament_name)
-
     if format_type == "gitbook":
-        print("gitbook")
-        create_gitbook("구약", dest_dir)
-        create_gitbook("신약", dest_dir)
+        create_gitbook(dest_dir)
+    else:
+        create_other_format(format_type)
 
 
 def usage():
@@ -484,7 +469,6 @@ def usage():
 ################################################
 
 def main():
-    print("sys.argv", sys.argv)
     if len(sys.argv) <= 3:
         usage()
         sys.exit(0)
@@ -510,7 +494,7 @@ def main():
 
     destination_dir = sys.argv[-1]
 
-    scrape_bible(format_type, destination_dir)
+    scrape_bible(format_type, os.path.abspath(destination_dir))
 
 
 if __name__ == "__main__":
