@@ -82,7 +82,7 @@ $ ./get_bible_content.py -f pdf ../
 $ open ../build/bible.pdf
 ~~~ 
 3.웹 스크래핑한 내용을 로컬 서버에서 실행해서 브라우져에서 확인하기
-- 웹 스크래핑한 내용을 github에 commit하면 gitbook에서도 확인이 가능하다
+- 웹 스크래핑한 내용을 github에 commit하면 gitbook.com 사이트에서도 확인이 가능하다
 ~~~
 $ gitbook serve 
 ~~~
