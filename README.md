@@ -9,20 +9,20 @@
 - 명령어 실행으로 여러 전자책 포맷(ex. epub)을 생성한다. 
 
 <a href="/images/ibooks_%EC%BB%A4%EB%B2%84.png" target="_blank">
-<img src="/images/ibooks_%EC%BB%A4%EB%B2%84.png" width="340" /></a>
+<img src="/images/ibooks_%EC%BB%A4%EB%B2%84.png" width="150" /></a>
 <a href="/images/ibooks_%EB%AA%A9%EC%B0%A8.png" target="_blank">
-<img src="/images/ibooks_%EB%AA%A9%EC%B0%A8.png" width="340" /></a>
+<img src="/images/ibooks_%EB%AA%A9%EC%B0%A8.png" width="150" /></a>
 <a href="/images/ibooks_%EC%B0%BD%EC%84%B81%EC%9E%A5.png" target="_blank">
-<img src="/images/ibooks_%EC%B0%BD%EC%84%B81%EC%9E%A5.png" width="340" /></a>
+<img src="/images/ibooks_%EC%B0%BD%EC%84%B81%EC%9E%A5.png" width="150" /></a>
 
-<a href="/images/ibooks_%EC%BB%A4%EB%B2%84.png" target="_blank">
-<img src="/images/ibooks_%EC%BB%A4%EB%B2%84.png" width="340" /></a>
-<a href="/images/ibooks_%EB%AA%A9%EC%B0%A8.png" target="_blank">
-<img src="/images/ibooks_%EB%AA%A9%EC%B0%A8.png" width="340" /></a>
-<a href="/images/ibooks_%EC%B0%A8%EB%A1%80.png" target="_blank">
-<img src="/images/ibooks_%EC%B0%A8%EB%A1%80.png" width="340" /></a>
-<a href="/images/ibooks_%EC%B0%BD%EC%84%B81%EC%9E%A5.png" target="_blank">
-<img src="/images/ibooks_%EC%B0%BD%EC%84%B81%EC%9E%A5.png" width="340" /></a>
+<a href="/images/ridibooks_%EC%BB%A4%EB%B2%84.png" target="_blank">
+<img src="/images/ridibooks_%EC%BB%A4%EB%B2%84.png" width="150" /></a>
+<a href="/images/ridibooks_%EB%AA%A9%EC%B0%A8.png" target="_blank">
+<img src="/images/ridibooks_%EB%AA%A9%EC%B0%A8.png" width="150" /></a>
+<a href="/images/ridibooks_%EC%B0%A8%EB%A1%80.png" target="_blank">
+<img src="/images/ridibooks_%EC%B0%A8%EB%A1%80.png" width="150" /></a>
+<a href="/images/ridibooks_%EC%B0%BD%EC%84%B81%EC%9E%A5.png" target="_blank">
+<img src="/images/ridibooks_%EC%B0%BD%EC%84%B81%EC%9E%A5.png" width="150" /></a>
 
 
 #### 코멘트
