@@ -15,14 +15,14 @@
 <a href="/images/ibooks_%EC%B0%BD%EC%84%B81%EC%9E%A5.png" target="_blank">
 <img src="/images/ibooks_%EC%B0%BD%EC%84%B81%EC%9E%A5.png" width="200" /></a>
 
-<a href="/images/ridibooks_%EC%BB%A4%EB%B2%84.png" target="_blank">
-<img src="/images/ridibooks_%EC%BB%A4%EB%B2%84.png" width="200" /></a>
-<a href="/images/ridibooks_%EB%AA%A9%EC%B0%A8.png" target="_blank">
-<img src="/images/ridibooks_%EB%AA%A9%EC%B0%A8.png" width="200" /></a>
-<a href="/images/ridibooks_%EC%B0%A8%EB%A1%80.png" target="_blank">
-<img src="/images/ridibooks_%EC%B0%A8%EB%A1%80.png" width="200" /></a>
-<a href="/images/ridibooks_%EC%B0%BD%EC%84%B81%EC%9E%A5.png" target="_blank">
-<img src="/images/ridibooks_%EC%B0%BD%EC%84%B81%EC%9E%A5.png" width="200" /></a>
+<a href="/images/ridibooks_%EC%BB%A4%EB%B2%84.jpg" target="_blank">
+<img src="/images/ridibooks_%EC%BB%A4%EB%B2%84.jpg" width="200" /></a>
+<a href="/images/ridibooks_%EB%AA%A9%EC%B0%A8.jpg" target="_blank">
+<img src="/images/ridibooks_%EB%AA%A9%EC%B0%A8.jpg" width="200" /></a>
+<a href="/images/ridibooks_%EC%B0%A8%EB%A1%80.jpg" target="_blank">
+<img src="/images/ridibooks_%EC%B0%A8%EB%A1%80.jpg" width="200" /></a>
+<a href="/images/ridibooks_%EC%B0%BD%EC%84%B81%EC%9E%A5.jpg" target="_blank">
+<img src="/images/ridibooks_%EC%B0%BD%EC%84%B81%EC%9E%A5.jpg" width="200" /></a>
 
 
 #### 코멘트
