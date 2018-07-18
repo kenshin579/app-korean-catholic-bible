@@ -1,10 +1,10 @@
 가톨릭 성경 ebook format (epub) 만들기
 ======
 
-## Goal
+# Goal
 - 성경을 전자책(ex. 리디북스 페이퍼)에서도 읽을 수 있도록 여러 포맷(ex. epub, pdf)으로 생성한다  
 
-### Feature
+## Feature
 - 전체 성경책 내용을 웹에서 scraping 해준다.
 - 명령어 실행으로 여러 전자책 포맷(ex. epub)을 생성한다. 
 
@@ -24,35 +24,36 @@
 <a href="/images/ridibooks_%EC%B0%BD%EC%84%B81%EC%9E%A5.jpg" target="_blank">
 <img src="/images/ridibooks_%EC%B0%BD%EC%84%B81%EC%9E%A5.jpg" width="200" /></a>
 
+## 필요한 패키지 설치
+- 실행 환경은 mac 기반으로 작성되었습니다.  
 
-#### 코멘트
-- 맥 시스템 기반으로 작성되었습니다.
-  
+### 1. python 설치
+- script 실행을 위해 python3을 설치한다
+~~~
+$ brew install python3
+~~~
 
-
-#### 필요한 패키지 설치
-##### 1. python 설치
-- python3 설치
-
-
-##### 2. gitbook관련 파일 설치
-1. 먼저 node를 설치한다
+### 2. gitbook 관련 파일 설치
+1.먼저 node를 설치한다
 ~~~
 $ brew install node
 ~~~
-1. gitbook-cli 설치
-- gitbook으로 여러 포맷을 생성하기 위해 먼저 gitbook 명령어를 설치한다.
+2.gitbook-cli 설치
+- gitbook으로 여러 포맷을 생성하기 위해 global로 gitbook 명령어를 설치한다.
 ~~~
 $ npm i gitbook-cli -g
 ~~~
-2. cablire 설치
-- calibre는 ebook manager 
+3.cablire 설치
+- calibre는 gitbook에서 pdf로 렌더링할 때 필요한 프로그램이다. 
 ~~~
 $ brew cask install calibre
+$ ln -s /Applications/calibre.app/Contents/MacOS/ebook-convert /usr/local/bin
 ~~~
 
-#### 실행하기 
+### 3. 실행하기 
 ```
+$ cd scripts
+$ ./get_bible_content.py -h
 한글 성경 EPUB 파일로 만들기
 Usage:  get_bible_content.py [-h|--help] [-f|--format] destination folder
    format : [epub, gitbook]
@@ -65,28 +66,28 @@ Examples:
 python3  get_bible_content.py -f epub ../
 
 ```
-1. 성경 내용 scraping 하기
-- 웹 서버에 많은 부하를 주지 않기 위해서 scraping 할때 time sleep을 줘서 전체 성경을 가져오는대는 시간이 걸린다. 
-```bash
-$ cd ./scripts
-$ cd ./scripts
-```
-$ cd ./scripts
-$ ./get_bible_content.py -f epub ../
-~~~
-2.성경 구약성경 epub으로 생성하기
+1.성경 내용 scraping 하기
+- 웹 서버에 많은 부하를 주지 않기 위해서 scraping 할때 time sleep을 주기 때문에 전체 성경을 가져오는 대는 시간이 걸린다. 
 ~~~
 $ cd ./scripts
+$ ./get_bible_content.py -f gitbook ../
+~~~
+
+2.웹 스크래핑한 성경을 epub나 pdf로 생성하기
+- 
+~~~
+$ cd ./scripts
 $ ./get_bible_content.py -f epub ../
+$ open ../build/bible.epub
+
+$ ./get_bible_content.py -f pdf ../
+$ open ../build/bible.pdf
 ~~~
   
-2.GITBOOK 사아트에서 성경을 읽을 수 있도록 개인 github에 업로드하기  
-
-gitbook 서버 실행후 browser에서 보기 
+3.웹 스크래핑한 내용을 로컬 서버에서 실행해서 브라우져에서 확인하기
+- 웹 스크래핑한 내용을 github에 commit하면 gitbook에서도 확인이 가능하다
 ~~~
 $ gitbook serve 
 ~~~
-
-
-#### Credit
-
+<a href="/images/gitbook_serve.png" target="_blank">
+<img src="/images/gitbook_serve.png" width="200" /></a>
