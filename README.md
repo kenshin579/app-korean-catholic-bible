@@ -24,6 +24,12 @@
 <a href="/images/ridibooks_%EC%B0%BD%EC%84%B81%EC%9E%A5.jpg" target="_blank">
 <img src="/images/ridibooks_%EC%B0%BD%EC%84%B81%EC%9E%A5.jpg" width="200" /></a>
 
+## 추가 작업목록 - 2차
+- [ ] 영어 성경도 스크래핑하기 (여러 버전이 많음)
+  - gitbook에서 multi 언어 지원을 하고 있음 (참고: https://toolchain.gitbook.com/languages.html)
+- [ ] 공동성서도 스크래핑하기
+- epub 커버 추가하기 (참고 : https://toolchain.gitbook.com/ebook.html#cover)  
+
 ## 필요한 패키지 설치
 - 실행 환경은 mac 기반으로 작성되었습니다.  
 
