@@ -90,4 +90,4 @@ $ open ../build/bible.pdf
 $ gitbook serve 
 ~~~
 <a href="/images/gitbook_serve.png" target="_blank">
-<img src="/images/gitbook_serve.png" width="200" /></a>
+<img src="/images/gitbook_serve.png" width="350" /></a>
