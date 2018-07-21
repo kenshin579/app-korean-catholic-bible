@@ -4,7 +4,7 @@
 
 ## 목차
    * [가톨릭 성경 ebook format (epub) 만들기](#가톨릭-성경-ebook-format-epub-만들기)
-      * [Feature](#features)
+      * [Features](#features)
       * [추가 작업목록 - 2차 (누구나 참여 가능합니다)](#추가-작업목록---2차-누구나-참여-가능합니다)
       * [필요한 패키지 설치](#필요한-패키지-설치)
          * [1. python 설치](#1-python-설치)
