@@ -8,6 +8,15 @@
     "mobi": "styles/mobi.css",
     "epub": "styles/epub.css"
   },
+  "plugins": [
+    "toggle-chapters",
+    "expandable-chapters-small"
+  ],
+  "pluginsConfig": {
+    "sitemap": {
+      "hostname": "https://kenshin579.tistory.com"
+    }
+  },
   "structure": {
     "readme": "INTRO.md"
   },
