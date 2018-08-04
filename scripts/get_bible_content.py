@@ -19,10 +19,10 @@ from bs4 import BeautifulSoup
 # Constants
 #
 ################################################
-base_url = "http://maria.catholic.or.kr/bible/read/"
-old_testment_url = "http://maria.catholic.or.kr/bible/read/bible_list.asp?m=1"
-new_testment_url = "http://maria.catholic.or.kr/bible/read/bible_list.asp?m=2"
-git_book_url = "https://openair.gitbook.io/korean-catholic-bible"
+BASE_URL = "http://maria.catholic.or.kr/bible/read/"
+OLD_TESTMENT_URL = "http://maria.catholic.or.kr/bible/read/bible_list.asp?m=1"
+NEW_TESTMENT_URL = "http://maria.catholic.or.kr/bible/read/bible_list.asp?m=2"
+GIT_BOOK_URL = "https://openair.gitbook.io/korean-catholic-bible"
 MAX_SLEEP_TIME = 15
 
 
@@ -59,7 +59,7 @@ def create_testament_info(testament_name):
 
     :return:
     """
-    bsObj = BeautifulSoup(request(old_testment_url if testament_name == "구약" else new_testment_url).content,
+    bsObj = BeautifulSoup(request(OLD_TESTMENT_URL if testament_name == "구약" else NEW_TESTMENT_URL).content,
                           "html.parser")
 
     rows = bsObj.find("table").find_all("tr")
@@ -218,7 +218,7 @@ def create_subcontents(testament_info):
                 url = re.sub(r"p=1", "p=" + str(chapter_index), testament_info["BookInfo"][subcontent]["Url"])
                 sleep_randomly()
 
-                bsObj = BeautifulSoup(request(base_url + "/" + url).content, "html.parser")
+                bsObj = BeautifulSoup(request(BASE_URL + "/" + url).content, "html.parser")
                 rows = bsObj.find("table").find_all("tr")
 
                 contents_list = []
